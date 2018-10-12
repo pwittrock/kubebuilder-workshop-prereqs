@@ -41,7 +41,21 @@ Setup a dev cluster.
   - Start a minikube cluster `minikube start`
   - Test the setup `kubectl get nodes`
 
-## Supplementary Resources on Kubebuilder and Kubernetes APIs
+### Create a kubebuilder project
+
+Create a new go project
+
+- `mkdir -p $HOME/kubebuilder-workshop/src/github.com/my-org/my-project`
+- `export GOPATH=$HOME/kubebuilder-workshop`
+- `cd $HOME/kubebuilder-workshop/src/github.com/my-org/my-project`
+
+Initialize the project
+
+- `kubebuilder init --domain k8s.io --license apache2 --owner "My Org"`
+  - enter `y` to have it run dep for you
+  - wait for `dep` to download the go library dependencies (takes ~3-5 minutes)
+
+## Supplementary Resources
 
 Documentation on kubebuilder available here:
 
