@@ -14,46 +14,55 @@ Install the dev tools that will be used to build and publish the MongoDB API.
 - Install Go 1.10+
   - [go](https://golang.org/)
 
-- Install dep
-  - [dep](https://github.com/golang/dep)
-
-- Install kubectl
-  - [link](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl)
-
-- Install kustomize
-  - [kustomize](https://github.com/kubernetes-sigs/kustomize)
-
 - Install kubebuilder
   - [kubebuilder](https://book.kubebuilder.io/getting_started/installation_and_setup.html)  
 
+- Install kubectl
+  - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl)
+  
+- (Optional) Install Make
+  - [Make](https://www.gnu.org/software/make/)
+  
 ### Create a dev cluster (Pick 1)
 
-Setup a dev cluster.
+Either:
 
-- Google Kubernetes Engine (GKE) - Remote
-  - Install [GKE](https://cloud.google.com/kubernetes-engine/)
+- Google Kubernetes Engine [GKE](https://cloud.google.com/kubernetes-engine/) - Remote
+  - Requires [gcloud](https://cloud.google.com/sdk/gcloud/)
   - Create the cluster `gcloud container clusters create "test-cluster"`
   - Fetch the credentials for the cluster `gcloud container clusters get-credentials test-cluster`
   - Test the setup `kubectl get nodes`
+
+or:
 
 - Minikube - Local VM
   - Install [minikube](https://github.com/kubernetes/minikube)
   - Start a minikube cluster `minikube start`
   - Test the setup `kubectl get nodes`
 
-### Create a kubebuilder project
+### Create a new kubebuilder project (Pick 1)
 
-Create a new go project
+Either:
 
-- `mkdir -p $HOME/kubebuilder-workshop/src/github.com/my-org/my-project`
-- `export GOPATH=$HOME/kubebuilder-workshop`
-- `cd $HOME/kubebuilder-workshop/src/github.com/my-org/my-project`
+- Clone the prereq project
+  - requires [git](https://git-scm.com/downloads)
+  - `mkdir -p $GOPATH/src/github.com/pwittrock/`
+  - `cd $GOPATH/src/github.com/pwittrock/`
+  - `git clone https://github.com/pwittrock/kubebuilder-workshop-prereqs`
 
-Initialize the project
+or:
 
-- `kubebuilder init --domain k8s.io --license apache2 --owner "My Org"`
-  - enter `y` to have it run dep for you
-  - wait for `dep` to download the go library dependencies (takes ~3-5 minutes)
+- Create a new project from scratch
+    - requires [dep](https://github.com/golang/dep)
+    - create the project directory
+        - `mkdir -p $HOME/kubebuilder-workshop/src/github.com/my-org/my-project`
+        - `export GOPATH=$HOME/kubebuilder-workshop`
+        - `cd $HOME/kubebuilder-workshop/src/github.com/my-org/my-project`
+    - initialize the project structure
+        - `kubebuilder init --domain k8s.io --license apache2 --owner "My Org"`
+          - enter `y` to have it run dep for you
+          - wait for `dep` to download the go library dependencies (takes ~3-5 minutes)
+    - (for workshop only) **copy the helper functions from [this sample code](https://github.com/pwittrock/kubebuilder-workshop/blob/master/pkg/controller/mongodb/helpers.go)**
 
 ## Supplementary Resources
 
