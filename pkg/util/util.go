@@ -101,9 +101,10 @@ func GenerateStatefuleSet(name, namespace string, replicas *int32, storage *stri
 
 // CopyStatefulSetFields copies the owned fields from one StatefulSet to another
 func CopyStatefulSetFields(from, to *appsv1.StatefulSet) {
+	to.Labels = from.Labels
+	to.Annotations = from.Annotations
 	to.Spec = from.Spec
 }
-
 
 // GenerateService returns a new corev1.Service pointer generated for the MongoDB instance
 func GenerateService(name, namespace string, copyLabels map[string]string) *corev1.Service {
@@ -135,6 +136,10 @@ func GenerateService(name, namespace string, copyLabels map[string]string) *core
 
 // CopyServiceFields copies the owned fields from one Service to another
 func CopyServiceFields(from, to *corev1.Service) {
+	to.Labels = from.Labels
+	to.Annotations = from.Annotations
+
+	// Don't copy the entire Spec, because we can't overwrite the clusterIp field
 	to.Spec.Selector = from.Spec.Selector
 	to.Spec.Ports = from.Spec.Ports
 }

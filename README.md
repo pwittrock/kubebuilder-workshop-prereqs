@@ -22,7 +22,7 @@ Install the dev tools that will be used to build and publish the MongoDB API.
   
 - (Optional) Install Make
   - [Make](https://www.gnu.org/software/make/)
-  
+  k
 ### Create a dev cluster (Pick 1)
 
 Either:
