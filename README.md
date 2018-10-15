@@ -33,7 +33,7 @@ Either:
   - Fetch the credentials for the cluster `gcloud container clusters get-credentials test-cluster`
   - Test the setup `kubectl get nodes`
 
-or:
+Or:
 
 - Minikube - Local VM
   - Install [minikube](https://github.com/kubernetes/minikube)
@@ -46,11 +46,12 @@ Either:
 
 - Clone the prereq project
   - requires [git](https://git-scm.com/downloads)
+  - make sure your `GOPATH` is configured to something (e.g. `$HOME/go`)
   - `mkdir -p $GOPATH/src/github.com/pwittrock/`
   - `cd $GOPATH/src/github.com/pwittrock/`
   - `git clone https://github.com/pwittrock/kubebuilder-workshop-prereqs`
 
-or:
+Or:
 
 - Create a new project from scratch
     - requires [dep](https://github.com/golang/dep)
@@ -62,7 +63,11 @@ or:
         - `kubebuilder init --domain k8s.io --license apache2 --owner "My Org"`
           - enter `y` to have it run dep for you
           - wait for `dep` to download the go library dependencies (takes ~3-5 minutes)
-    - (for workshop only) **copy the helper functions from [this sample code](https://github.com/pwittrock/kubebuilder-workshop/blob/master/pkg/controller/mongodb/helpers.go)**
+    - **for workshop only:** copy the [helper functions](https://github.com/pwittrock/kubebuilder-workshop-prereqs/blob/master/pkg/util/util.go)
+
+## Verify your project is setup
+
+- Run `make` from the project
 
 ## Supplementary Resources
 

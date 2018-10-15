@@ -99,6 +99,12 @@ func GenerateStatefuleSet(name, namespace string, replicas *int32, storage *stri
 	return stateful
 }
 
+// CopyStatefulSetFields copies the owned fields from one StatefulSet to another
+func CopyStatefulSetFields(from, to *appsv1.StatefulSet) {
+	to.Spec = from.Spec
+}
+
+
 // GenerateService returns a new corev1.Service pointer generated for the MongoDB instance
 func GenerateService(name, namespace string, copyLabels map[string]string) *corev1.Service {
 	// TODO: Default and Validate these with Webhooks
@@ -125,4 +131,10 @@ func GenerateService(name, namespace string, copyLabels map[string]string) *core
 		},
 	}
 	return service
+}
+
+// CopyServiceFields copies the owned fields from one Service to another
+func CopyServiceFields(from, to *corev1.Service) {
+	to.Spec.Selector = from.Spec.Selector
+	to.Spec.Ports = from.Spec.Ports
 }
