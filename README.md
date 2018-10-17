@@ -1,3 +1,5 @@
+This is not an officially supported Google product
+
 ## Prerequisites
 
 To get the most out of this Workshop, users should have:
@@ -7,9 +9,12 @@ To get the most out of this Workshop, users should have:
 
 ## Setup a Kubernetes API dev environment
 
+The workshop is focused on building a Kubernetes API / Operator from scratch.  Do the following to setup your
+development environment.
+
 ### Install dev tools
 
-Install the dev tools that will be used to build and publish the MongoDB API.
+Make sure the following are installed.
 
 - Install Go 1.10+
   - [go](https://golang.org/)
@@ -22,7 +27,7 @@ Install the dev tools that will be used to build and publish the MongoDB API.
   
 - (Optional) Install Make
   - [Make](https://www.gnu.org/software/make/)
-  k
+
 ### Create a dev cluster (Pick 1)
 
 Either:
@@ -44,7 +49,7 @@ Or:
 
 Either:
 
-- Clone the prereq project
+- Clone this project (which has already been setup for you)
   - requires [git](https://git-scm.com/downloads)
   - make sure your `GOPATH` is configured to something (e.g. `$HOME/go`)
   - `mkdir -p $GOPATH/src/github.com/pwittrock/`
@@ -69,8 +74,10 @@ Or:
 
 - Run `make` from the project
 
+**Note:** If you don't have `make` installed, you can look at the `Makefile` and run go commands manually.
+
 ## Supplementary Resources
 
-Documentation on kubebuilder available here:
+For those who are interested, there is documentation on kubebuilder available here:
 
 - [http://book.kubebuilder.io](http://book.kubebuilder.io)
