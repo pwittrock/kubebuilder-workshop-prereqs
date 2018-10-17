@@ -108,27 +108,27 @@ func GenerateStatefuleSet(mongo metav1.Object, replicas *int32, storage *string)
 // CopyStatefulSetFields copies the owned fields from one StatefulSet to another
 // Returns true if the fields copied from don't match to.
 func CopyStatefulSetFields(from, to *appsv1.StatefulSet) bool {
-	match := false
+	requireUpdate := false
 	for k, v := range to.Labels {
 		if from.Labels[k] != v {
-			match = true
+			requireUpdate = true
 		}
 	}
 	to.Labels = from.Labels
 
 	for k, v := range to.Annotations {
 		if from.Annotations[k] != v {
-			match = true
+			requireUpdate = true
 		}
 	}
 	to.Annotations = from.Annotations
 
 	if !reflect.DeepEqual(to.Spec, from.Spec) {
-		match = true
+		requireUpdate = true
 	}
 	to.Spec = from.Spec
 
-	return match
+	return requireUpdate
 }
 
 // GenerateService returns a new corev1.Service pointer generated for the MongoDB instance
@@ -163,17 +163,17 @@ func GenerateService(mongo metav1.Object) *corev1.Service {
 
 // CopyServiceFields copies the owned fields from one Service to another
 func CopyServiceFields(from, to *corev1.Service) bool {
-	match := false
+	requireUpdate := false
 	for k, v := range to.Labels {
 		if from.Labels[k] != v {
-			match = true
+			requireUpdate = true
 		}
 	}
 	to.Labels = from.Labels
 
 	for k, v := range to.Annotations {
 		if from.Annotations[k] != v {
-			match = true
+			requireUpdate = true
 		}
 	}
 	to.Annotations = from.Annotations
@@ -181,14 +181,14 @@ func CopyServiceFields(from, to *corev1.Service) bool {
 	// Don't copy the entire Spec, because we can't overwrite the clusterIp field
 
 	if !reflect.DeepEqual(to.Spec.Selector, from.Spec.Selector) {
-		match = true
+		requireUpdate = true
 	}
 	to.Spec.Selector = from.Spec.Selector
 
 	if !reflect.DeepEqual(to.Spec.Ports, from.Spec.Ports) {
-		match = true
+		requireUpdate = true
 	}
 	to.Spec.Ports = from.Spec.Ports
 
-	return match
+	return requireUpdate
 }
