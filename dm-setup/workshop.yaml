@@ -1,0 +1,129 @@
+# Copyright 2018 Google Inc. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Instructions: run the following commands to setup a gce vm development machine
+#
+# gcloud deployment-manager deployments create kubebuilder-workshop --config workshop.yaml
+# gcloud ssh kubebuilder-workshop
+# setup-minikube.sh
+# setup-project.sh
+# cd $GOPATH/go/src/github.com/pwittrock/kubebuilder-workshop-prereqs/
+# make
+# kubebuilder create api ...
+
+resources:
+- name: kubebuilder-workshop
+  type: compute.v1.instance
+  properties:
+    zone: us-east4-b
+    machineType: zones/us-east4-b/machineTypes/n1-standard-2
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: projects/ubuntu-os-cloud/global/images/ubuntu-1804-bionic-v20181003
+    networkInterfaces:
+    - network: global/networks/default
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
+    metadata:
+      items:
+      - key: startup-script
+        value: |
+          #!/bin/bash
+
+          cat > /etc/environment <<- EOM
+          PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/kubebuilder/bin"
+          EOM
+
+          apt -y update
+          apt -y dist-upgrade
+          apt -y install docker.io golang-go git make build-essential
+
+          which minikube || (curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/)
+          which kubectl || (curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl && mv kubectl /usr/local/bin/)
+
+          version=1.0.5
+          arch=amd64
+          which kubebuilder || (curl -L -O https://github.com/kubernetes-sigs/kubebuilder/releases/download/v${version}/kubebuilder_${version}_linux_${arch}.tar.gz && tar -zxvf kubebuilder_${version}_linux_${arch}.tar.gz && chmod +x kubebuilder_${version}_linux_${arch}/* && mv kubebuilder_${version}_linux_${arch} /usr/local/kubebuilder)
+
+          cat > /usr/local/bin/setup-minikube.sh <<- EOM
+          #!/bin/bash
+
+          # Copyright 2018 Google Inc. All rights reserved.
+          #
+          # Licensed under the Apache License, Version 2.0 (the "License");
+          # you may not use this file except in compliance with the License.
+          # You may obtain a copy of the License at
+          #
+          #     http://www.apache.org/licenses/LICENSE-2.0
+          #
+          # Unless required by applicable law or agreed to in writing, software
+          # distributed under the License is distributed on an "AS IS" BASIS,
+          # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+          # See the License for the specific language governing permissions and
+          # limitations under the License.
+
+          set -e
+          set -x
+
+          export KUBECONFIG=\$HOME/.kube/config
+          export MINIKUBE_HOME=\$HOME
+          export CHANGE_MINIKUBE_NONE_USER=true
+          export MINIKUBE_WANTREPORTERRORPROMPT=false
+          export MINIKUBE_WANTUPDATENOTIFICATION=false
+
+          mkdir \$HOME/.kube || true
+          mkdir \$HOME/.minikube || true
+
+          sudo minikube start --vm-driver=none --apiserver-ips 127.0.0.1 --apiserver-name localhost
+
+          sudo chown -R \$USER \$HOME/.kube
+          sudo chgrp -R \$USER \$HOME/.kube
+
+          sudo chown -R \$USER \$HOME/.minikube
+          sudo chgrp -R \$USER \$HOME/.minikube
+          EOM
+          chmod +rx /usr/local/bin/setup-minikube.sh
+
+          cat > /usr/local/bin/setup-project.sh <<- EOM
+          #!/bin/bash
+
+          # Copyright 2018 Google Inc. All rights reserved.
+          #
+          # Licensed under the Apache License, Version 2.0 (the "License");
+          # you may not use this file except in compliance with the License.
+          # You may obtain a copy of the License at
+          #
+          #     http://www.apache.org/licenses/LICENSE-2.0
+          #
+          # Unless required by applicable law or agreed to in writing, software
+          # distributed under the License is distributed on an "AS IS" BASIS,
+          # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+          # See the License for the specific language governing permissions and
+          # limitations under the License.
+
+          set -e
+          set -x
+
+          export GOPATH=\$HOME/go
+          mkdir -p \$GOPATH/src/github.com/pwittrock
+          cd \$GOPATH/src/github.com/pwittrock
+          git clone https://github.com/pwittrock/kubebuilder-workshop-prereqs
+          cd kubebuilder-workshop-prereqs
+          EOM
+          chmod +rx /usr/local/bin/setup-project.sh

@@ -7,10 +7,14 @@ To get the most out of this Workshop, users should have:
 - A basic understanding of [Go Programming Language](https://golang.org/)
 - A basic understanding of [Kubernetes APIs](https://kubernetes.io/docs/user-journeys/users/application-developer/foundational/#section-2)
 
-## Setup a Kubernetes API dev environment
+## Setup a local Kubernetes API dev environment
 
 The workshop is focused on building a Kubernetes API / Operator from scratch.  Do the following to setup your
 development environment.
+
+**Note:** If you want to use GCP Deployment Manager to setup a GCE VM development environment *instead of creating a local
+environment* - see [dm-setup](dm-setup/README.md) instructions.  **Do this if you were provided a GCP login and
+password for the workshop.**
 
 ### Install dev tools
 
