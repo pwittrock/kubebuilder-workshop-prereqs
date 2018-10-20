@@ -13,7 +13,7 @@ The workshop is focused on building a Kubernetes API / Operator from scratch.  D
 development environment.
 
 **Note**: If you have been provided a pre-provisioned GCP project development account see the
-[pre-provision instructions](https://github.com/pwittrock/kubebuilder-workshop-prereqs/blob/master/preprovisioned/README.md)
+[pre-provision instructions](preprovisioned/README.md#instructions-for-using-a-provisioned-workshop-development-machine)
 instead.
 
 ### Install dev tools
