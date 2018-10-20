@@ -6,6 +6,7 @@ Do this if you have the username / password for an existing GCP project that has
 instance for you.
 
 - Login to the GCE Console [https://console.cloud.google.com/compute/instances](https://console.cloud.google.com/compute/instances)
+- Select the All Things Open project
 - Select the *kubebuilder-workshop* Instance
 - Select *SSH*
   - Select *Open in browser window*
