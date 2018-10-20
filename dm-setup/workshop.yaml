@@ -52,15 +52,23 @@ resources:
 
           apt -y update
           apt -y dist-upgrade
-          apt -y install docker.io golang-go git make build-essential emacs
+          apt -y install docker.io golang-go go-dep git make build-essential emacs
 
+          # install minikube
           which minikube || (curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/)
+
+          # install kubectl
           which kubectl || (curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl && mv kubectl /usr/local/bin/)
 
+          # install kustomize
+          which kustomize || (curl -Lo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.8/kustomize_1.0.8_linux_amd64 && chmod +x kustomize && mv kustomize /usr/local/bin/)
+
+          # install kubebuilder
           version=1.0.5
           arch=amd64
           which kubebuilder || (curl -L -O https://github.com/kubernetes-sigs/kubebuilder/releases/download/v${version}/kubebuilder_${version}_linux_${arch}.tar.gz && tar -zxvf kubebuilder_${version}_linux_${arch}.tar.gz && chmod +x kubebuilder_${version}_linux_${arch}/* && mv kubebuilder_${version}_linux_${arch} /usr/local/kubebuilder)
 
+          # create script for starting minikube
           cat > /usr/local/bin/setup-minikube.sh <<- EOM
           #!/bin/bash
 
@@ -100,6 +108,7 @@ resources:
           EOM
           chmod +rx /usr/local/bin/setup-minikube.sh
 
+          # create script for bootstrapping the workshop project
           cat > /usr/local/bin/setup-project.sh <<- EOM
           #!/bin/bash
 
