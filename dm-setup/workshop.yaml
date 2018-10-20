@@ -27,7 +27,7 @@ resources:
   type: compute.v1.instance
   properties:
     zone: us-east4-b
-    machineType: zones/us-east4-b/machineTypes/n1-standard-2
+    machineType: zones/us-east4-b/machineTypes/n1-standard-4
     disks:
     - deviceName: boot
       type: PERSISTENT

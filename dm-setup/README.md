@@ -18,6 +18,11 @@ Do this if you have a GCP project, but it hasn't been setup for you.
 - Install [gcloud](https://cloud.google.com/sdk/install)
 
 ```bash
+gcloud auth login # login through a browser
+gcloud config set project PROJECT
+```
+
+```bash
 gcloud deployment-manager deployments create kubebuilder-workshop --config workshop.yaml
 ```
 
@@ -48,7 +53,8 @@ setup-minikube.sh
 
 ```bash
 setup-project.sh
-cd $GOPATH/go/src/github.com/pwittrock/kubebuilder-workshop-prereqs/
+export GOPATH=$HOME/go
+cd go/src/github.com/pwittrock/kubebuilder-workshop-prereqs/
 make
 ```
 
