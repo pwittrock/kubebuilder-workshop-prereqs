@@ -1,4 +1,4 @@
-# Instructions for getting a Development machine
+# Instructions for provisioning a Development machine with Deployment Manager
 
 ## Create up a Development machine using DM
 

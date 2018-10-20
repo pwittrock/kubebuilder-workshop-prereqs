@@ -22,6 +22,7 @@ Make sure the following are installed.
 
 - Install Go 1.10+
   - [go](https://golang.org/)
+  - Set a `GOPATH` (e.g. `export GOPATH=$HOME/go`)
 
 - Install kubebuilder
   - [kubebuilder](https://book.kubebuilder.io/getting_started/installation_and_setup.html)  
@@ -55,6 +56,7 @@ Either:
 
 - Clone this project (which has already been setup for you)
   - requires [git](https://git-scm.com/downloads)
+  - export your GOPATH e.g. `export GOPATH=$HOME/go`
   - make sure your `GOPATH` is configured to something (e.g. `$HOME/go`)
   - `mkdir -p $GOPATH/src/github.com/pwittrock/`
   - `cd $GOPATH/src/github.com/pwittrock/`

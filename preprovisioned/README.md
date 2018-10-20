@@ -29,5 +29,4 @@ make
 
 ## Start kubebuilding
 
-Return to the [workshop](https://github.com/pwittrock/kubebuilder-workshop#overview
-)
+Return to the [workshop](https://github.com/pwittrock/kubebuilder-workshop#overview)

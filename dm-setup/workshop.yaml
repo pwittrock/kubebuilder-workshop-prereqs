@@ -52,7 +52,7 @@ resources:
 
           apt -y update
           apt -y dist-upgrade
-          apt -y install docker.io golang-go git make build-essential
+          apt -y install docker.io golang-go git make build-essential emacs
 
           which minikube || (curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/)
           which kubectl || (curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl && mv kubectl /usr/local/bin/)
