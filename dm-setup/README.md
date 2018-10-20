@@ -1,17 +1,6 @@
 # Instructions for getting a Development machine
 
-## Option 1: login to an existing machine
-
-Do this if you have the username / password for an existing GCP project that has been setup with a Development
-instance for you.
-
-- Login to the GCE Console [https://console.cloud.google.com/compute/instances](https://console.cloud.google.com/compute/instances)
-- Select the All Things Open project
-- Select the *kubebuilder-workshop* Instance
-- Select *SSH*
-  - Select *Open in browser window*
-
-## Option 2: create up a Development machine using DM
+## Create up a Development machine using DM
 
 Do this if you have a GCP project, but it hasn't been setup for you.
 

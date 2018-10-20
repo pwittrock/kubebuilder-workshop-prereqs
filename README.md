@@ -12,9 +12,8 @@ To get the most out of this Workshop, users should have:
 The workshop is focused on building a Kubernetes API / Operator from scratch.  Do the following to setup your
 development environment.
 
-**Note:** If you want to use GCP Deployment Manager to setup a GCE VM development environment *instead of creating a local
-environment* - see [dm-setup](dm-setup/README.md) instructions.  **Do this if you were provided a GCP login and
-password for the workshop.**
+**Note**: If you have been provided a pre-provisioned GCP project development account see the
+[preprovisioned](preprovisioned/README.md) instructions instead.
 
 ### Install dev tools
 
