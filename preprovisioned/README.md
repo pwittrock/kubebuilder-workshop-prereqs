@@ -1,6 +1,6 @@
-# Instructions for using a provisioned workshop development machine
+# All Things Open Provisioned GCP Accounts
 
-## Login to the dev machine
+## Login to the workshop dev instance
 
 1. Login to the [Google Cloud Console](https://console.cloud.google.com/compute/instances)
    using the provided username and password
@@ -9,9 +9,14 @@
 1. Select the *kubebuilder-workshop* instance
 1. Select the *SSH* button under *Remote access*
 
+**Note:** Alternatively, login using
+ 
+ 1. `gcloud auth login`
+ 1. `gcloud compute ssh kubebuilder-workshop`
+
 ## Configure a local minikube cluster
 
-Use the provided script to setup a local minikube cluster.
+From the dev instance, use the provided script to setup a local minikube cluster.
 
 ```bash
 setup-minikube.sh
@@ -19,7 +24,7 @@ setup-minikube.sh
 
 ## Setup the go project
 
-Use the provided script to clone the prereqs project.
+From the dev instance, use the provided script to clone the prereqs project.
 
 ```bash
 setup-project.sh
