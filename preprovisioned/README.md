@@ -3,8 +3,9 @@
 ## Login to the dev machine
 
 1. Login to the [Google Cloud Console](https://console.cloud.google.com/compute/instances)
-  using the provided username and password
+   using the provided username and password
 1. Select the *All Things Open - K8S WS* project from the drop down
+1. Select *continue*
 1. Select the *kubebuilder-workshop* instance
 1. Select the *SSH* button under *Remote access*
 
