@@ -3,7 +3,8 @@
 ## Login to the workshop dev instance
 
 1. Login to the [Google Cloud Console](https://console.cloud.google.com/compute/instances)
-   using the provided username and password
+   using the provided username and password.
+   - If you are already logged in with a different account - login with an incognito window.
 1. Select the *All Things Open - K8S WS* project from the drop down
 1. Select *continue*
 1. Select the *kubebuilder-workshop* instance
