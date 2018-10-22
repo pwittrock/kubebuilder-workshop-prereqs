@@ -13,8 +13,7 @@ The workshop is focused on building a Kubernetes API / Operator from scratch.  D
 development environment.
 
 **Note**: If you have been provided a pre-provisioned GCP project development account see the
-[pre-provision instructions](preprovisioned/README.md#instructions-for-using-a-provisioned-workshop-development-machine)
-instead.
+[pre-provision instructions](preprovisioned/README.md) instead.
 
 ### Install dev tools
 
@@ -74,7 +73,9 @@ Or:
         - `kubebuilder init --domain k8s.io --license apache2 --owner "My Org"`
           - enter `y` to have it run dep for you
           - wait for `dep` to download the go library dependencies (takes ~3-5 minutes)
-    - **for workshop only:** copy the [helper functions](https://github.com/pwittrock/kubebuilder-workshop-prereqs/blob/master/pkg/util/util.go)
+    - copy these [helper functions](https://github.com/pwittrock/kubebuilder-workshop-prereqs/blob/master/pkg/util/util.go)
+      so they are available locally - e.g. create `pkg/util/util.go` in your project and copy the functions there.
+      You will need to use these later in the workshop.
 
 ## Verify your project is setup
 
